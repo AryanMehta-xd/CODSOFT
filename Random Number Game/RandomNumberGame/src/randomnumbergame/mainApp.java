@@ -42,8 +42,8 @@ public class mainApp extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel3 = new javax.swing.JLabel();
         pan_main = new javax.swing.JPanel();
+        bt_retry = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         tf_guess = new javax.swing.JTextField();
@@ -51,13 +51,22 @@ public class mainApp extends javax.swing.JFrame {
         lbl_status = new javax.swing.JLabel();
         lbl_attempts = new javax.swing.JLabel();
 
-        jLabel3.setText("jLabel3");
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Number Guessing Game");
         setResizable(false);
 
         pan_main.setBackground(new java.awt.Color(255, 255, 255));
+
+        bt_retry.setBackground(new java.awt.Color(0, 0, 204));
+        bt_retry.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        bt_retry.setForeground(new java.awt.Color(0, 255, 102));
+        bt_retry.setText("R");
+        bt_retry.setToolTipText("Restart Game");
+        bt_retry.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_retryActionPerformed(evt);
+            }
+        });
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 204));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -102,32 +111,38 @@ public class mainApp extends javax.swing.JFrame {
         pan_mainLayout.setHorizontalGroup(
             pan_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(pan_mainLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tf_guess, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(bt_guess)
-                .addContainerGap(35, Short.MAX_VALUE))
             .addComponent(lbl_status, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pan_mainLayout.createSequentialGroup()
-                .addComponent(lbl_attempts, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(pan_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pan_mainLayout.createSequentialGroup()
+                        .addComponent(lbl_attempts, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(239, 239, 239)
+                        .addComponent(bt_retry))
+                    .addGroup(pan_mainLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(tf_guess, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(bt_guess)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pan_mainLayout.setVerticalGroup(
             pan_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pan_mainLayout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbl_attempts)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pan_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pan_mainLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lbl_attempts))
+                    .addComponent(bt_retry, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pan_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(bt_guess, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pan_mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(tf_guess, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lbl_status, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -183,6 +198,15 @@ public class mainApp extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tf_guessActionPerformed
 
+    //button to restart the game 
+    private void bt_retryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_retryActionPerformed
+        generateNumber();
+        tf_guess.setText("");
+        lbl_attempts.setText("Tries:0");
+        user_tries=0;
+        lbl_status.setText("");
+    }//GEN-LAST:event_bt_retryActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -220,9 +244,9 @@ public class mainApp extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_guess;
+    private javax.swing.JButton bt_retry;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lbl_attempts;
     private javax.swing.JLabel lbl_status;
     private javax.swing.JPanel pan_main;
