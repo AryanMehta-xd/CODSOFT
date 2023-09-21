@@ -1,0 +1,23 @@
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`studentmanagement` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
+USE `studentmanagement`;
+
+/*Table structure for table `studentdata` */
+
+DROP TABLE IF EXISTS `studentdata`;
+
+CREATE TABLE `studentdata` (
+  `stud_id` int NOT NULL,
+  `stud_name` varchar(255) DEFAULT NULL,
+  `stud_email` varchar(255) DEFAULT NULL,
+  `stud_mob_no` varchar(10) DEFAULT NULL,
+  `stud_div` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`stud_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*Data for the table `studentdata` */
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
