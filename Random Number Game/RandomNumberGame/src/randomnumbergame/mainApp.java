@@ -62,6 +62,7 @@ public class mainApp extends javax.swing.JFrame {
         bt_retry.setForeground(new java.awt.Color(0, 255, 102));
         bt_retry.setText("R");
         bt_retry.setToolTipText("Restart Game");
+        bt_retry.setFocusPainted(false);
         bt_retry.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_retryActionPerformed(evt);
@@ -91,6 +92,7 @@ public class mainApp extends javax.swing.JFrame {
         bt_guess.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         bt_guess.setForeground(new java.awt.Color(0, 255, 102));
         bt_guess.setText("Guess");
+        bt_guess.setFocusPainted(false);
         bt_guess.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_guessActionPerformed(evt);

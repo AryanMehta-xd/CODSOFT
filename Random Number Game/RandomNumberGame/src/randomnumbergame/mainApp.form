@@ -106,6 +106,7 @@
             </Property>
             <Property name="text" type="java.lang.String" value="R"/>
             <Property name="toolTipText" type="java.lang.String" value="Restart Game"/>
+            <Property name="focusPainted" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_retryActionPerformed"/>
@@ -159,6 +160,7 @@
               <Color blue="66" green="ff" red="0" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Guess"/>
+            <Property name="focusPainted" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bt_guessActionPerformed"/>

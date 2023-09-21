@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -24,9 +25,10 @@ public class fileSelecter extends javax.swing.JFrame {
 
     //global variables
     int isFileSelected = 0;
-    ArrayList<String> wordList = new ArrayList<>();
-    String userDelimiter;
+    ArrayList<String> wordList;
+    String delimiters = "[ ,\n\t;:]";
     File in_file;
+    String in_lines = "";
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,13 +41,11 @@ public class fileSelecter extends javax.swing.JFrame {
 
         main_pan = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lbl_ta_info = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ta_textIN = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
         bt_selectFIle = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        tf_deli = new javax.swing.JTextField();
         but_prosText = new javax.swing.JButton();
         lbl_fileName = new javax.swing.JLabel();
 
@@ -62,10 +62,13 @@ public class fileSelecter extends javax.swing.JFrame {
         jLabel1.setText("Word Counter");
         jLabel1.setOpaque(true);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("Enter Text:");
+        lbl_ta_info.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lbl_ta_info.setText("Enter Text:");
+
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         ta_textIN.setColumns(20);
+        ta_textIN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ta_textIN.setRows(5);
         ta_textIN.setToolTipText("Enter Text");
         jScrollPane1.setViewportView(ta_textIN);
@@ -78,22 +81,18 @@ public class fileSelecter extends javax.swing.JFrame {
         bt_selectFIle.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         bt_selectFIle.setForeground(new java.awt.Color(255, 255, 255));
         bt_selectFIle.setText("Select Word File");
+        bt_selectFIle.setFocusPainted(false);
         bt_selectFIle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_selectFIleActionPerformed(evt);
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setText("Enter Delimiter :");
-
-        tf_deli.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tf_deli.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         but_prosText.setBackground(new java.awt.Color(0, 0, 0));
         but_prosText.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         but_prosText.setForeground(new java.awt.Color(255, 255, 255));
         but_prosText.setText("Process Text");
+        but_prosText.setFocusPainted(false);
         but_prosText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 but_prosTextActionPerformed(evt);
@@ -110,17 +109,11 @@ public class fileSelecter extends javax.swing.JFrame {
             .addGroup(main_panLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(main_panLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(main_panLayout.createSequentialGroup()
-                        .addGroup(main_panLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(main_panLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(main_panLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(tf_deli, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(17, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, main_panLayout.createSequentialGroup()
+                        .addComponent(lbl_ta_info, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, main_panLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(main_panLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,7 +135,7 @@ public class fileSelecter extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(main_panLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
+                    .addComponent(lbl_ta_info)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
@@ -150,11 +143,7 @@ public class fileSelecter extends javax.swing.JFrame {
                 .addGroup(main_panLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lbl_fileName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(bt_selectFIle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(main_panLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(tf_deli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addComponent(but_prosText)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -186,49 +175,52 @@ public class fileSelecter extends javax.swing.JFrame {
         if (response == JFileChooser.APPROVE_OPTION) {
             //get selected file
             in_file = fileChooser.getSelectedFile();
-            isFileSelected = 1;
-            lbl_fileName.setText(in_file.getName());
-            main_pan.revalidate();
+
+            try {
+                BufferedReader bf = new BufferedReader(new FileReader(in_file));
+                String line;
+
+                while ((line = bf.readLine()) != null) {
+                    //save the read word in string
+                    in_lines += line;
+                }
+                if (in_lines.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Input File is Empty!!");
+                } else {
+                    ta_textIN.setText(in_lines);
+                    lbl_ta_info.setText("Text File :");
+                    main_pan.revalidate();
+                    isFileSelected = 1;
+                    lbl_fileName.setText(in_file.getName());
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error Opening the File!!");
+            }
+
         } else if (response == JFileChooser.CANCEL_OPTION) {
             isFileSelected = 0;
         }
     }//GEN-LAST:event_bt_selectFIleActionPerformed
 
     private void but_prosTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_but_prosTextActionPerformed
-        String in_lines = "";
+        wordList = new ArrayList<>();
         //if user is asking to process text without any input produce error
         if ((isFileSelected == 0) && ta_textIN.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please select a text file or add text in the field!!");
-        } //user has not added any delimiter
-        else {
-            if (tf_deli.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Please Enter Delimeter!!");
-            } else {
-                userDelimiter = tf_deli.getText();
-                //start string processing
-                if (isFileSelected == 1) {
-                    try {
-                        BufferedReader bf = new BufferedReader(new FileReader(in_file));
-                        String line;
-
-                        while ((line = bf.readLine()) != null) {
-                            //save the read word in string
-                            in_lines += line;
-                        }
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    in_lines = ta_textIN.getText();
-                }
-                String[] lines = in_lines.split(userDelimiter);
-                for (String ln : lines) {
-                    wordList.add(ln);
-                }
-                dispose();
-                new wordProsDisplay(wordList).setVisible(true);
+        } else {
+            //start string processing
+            if (isFileSelected == 0) {
+                in_lines = ta_textIN.getText();
             }
+
+            String tokens[] = in_lines.split(delimiters);
+
+            for (String line : tokens) {
+                wordList.add(line);
+            }
+
+            JOptionPane.showMessageDialog(null, "Word Count :" + wordList.size());
         }
     }//GEN-LAST:event_but_prosTextActionPerformed
 
@@ -271,13 +263,11 @@ public class fileSelecter extends javax.swing.JFrame {
     private javax.swing.JButton bt_selectFIle;
     private javax.swing.JButton but_prosText;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl_fileName;
+    private javax.swing.JLabel lbl_ta_info;
     private javax.swing.JPanel main_pan;
     private javax.swing.JTextArea ta_textIN;
-    private javax.swing.JTextField tf_deli;
     // End of variables declaration//GEN-END:variables
 }
