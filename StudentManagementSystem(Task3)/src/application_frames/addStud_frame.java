@@ -1,5 +1,8 @@
-package studentmanagementsystem;
+package application_frames;
 
+import data_methods.StudentServicesImpl;
+import data_methods.StudentService;
+import data_methods.Student;
 import javax.swing.JOptionPane;
 
 /**
@@ -8,7 +11,7 @@ import javax.swing.JOptionPane;
  */
 public class addStud_frame extends javax.swing.JFrame {
 
-    private studentServices ss = new studentServices();
+    private StudentService ss = new StudentServicesImpl();
     
     public addStud_frame() {
         initComponents();

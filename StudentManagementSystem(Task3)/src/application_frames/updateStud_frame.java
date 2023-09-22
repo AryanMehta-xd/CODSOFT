@@ -1,5 +1,9 @@
-package studentmanagementsystem;
+package application_frames;
 
+import application_frames.choice_frame;
+import data_methods.StudentServicesImpl;
+import data_methods.StudentService;
+import data_methods.Student;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 
@@ -19,7 +23,7 @@ public class updateStud_frame extends javax.swing.JFrame {
         bt_update.setVisible(false);
     }
 
-    private studentServices ss = new studentServices();
+    private StudentService ss = new StudentServicesImpl();
     private String stud_id;    
     
     /**

@@ -1,5 +1,8 @@
-package studentmanagementsystem;
+package application_frames;
 
+import data_methods.StudentServicesImpl;
+import data_methods.StudentService;
+import data_methods.Student;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
@@ -15,7 +18,7 @@ import javax.swing.table.JTableHeader;
 public class displayAll_frame extends javax.swing.JFrame {
 
     private ArrayList<Student> stud_list;
-    private studentServices ss = new studentServices();
+    private StudentService ss = new StudentServicesImpl();
 
     public displayAll_frame() {
         initComponents();

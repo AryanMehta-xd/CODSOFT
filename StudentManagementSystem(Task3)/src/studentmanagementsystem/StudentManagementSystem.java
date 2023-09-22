@@ -1,5 +1,7 @@
 package studentmanagementsystem;
 
+import application_frames.choice_frame;
+
 /**
  *
  * @author Aryan Mehta

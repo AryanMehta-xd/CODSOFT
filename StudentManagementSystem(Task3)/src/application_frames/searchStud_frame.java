@@ -1,5 +1,9 @@
-package studentmanagementsystem;
+package application_frames;
 
+import application_frames.choice_frame;
+import data_methods.StudentServicesImpl;
+import data_methods.StudentService;
+import data_methods.Student;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,7 +16,7 @@ public class searchStud_frame extends javax.swing.JFrame {
         initComponents();
     }
 
-    studentServices ss = new studentServices();
+    private StudentService ss = new StudentServicesImpl();
     
     /**
      * This method is called from within the constructor to initialize the form.

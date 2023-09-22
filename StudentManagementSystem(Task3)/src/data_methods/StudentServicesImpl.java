@@ -1,5 +1,6 @@
-package studentmanagementsystem;
+package data_methods;
 
+import data_methods.Student;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -7,28 +8,33 @@ import java.util.ArrayList;
  *
  * @author Aryan Mehta
  */
-public class studentServices {
+public class StudentServicesImpl implements StudentService{
 
     private PreparedStatement ps;
     private db_conn db = new db_conn();
     private ResultSet rs;
 
+    @Override
     public int add_student(Student student) {
         return add_stud(student);
     }
-
+    
+    @Override
     public Student find_student(String stud_id) {
         return find_stud(stud_id);
     }
 
+    @Override
     public int update_student(Student student) {
         return update_stud(student);
     }
 
+    @Override
     public ArrayList<Student> display_all_students() {
         return display_stud();
     }
 
+    @Override
     public int remove_stud(String stud_id) {
         return remove_st(stud_id);
     }
@@ -128,6 +134,7 @@ public class studentServices {
         }
     }
 
+    @Override
     public void closeCon() {
         try {
             db.db_con.close();

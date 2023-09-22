@@ -1,5 +1,9 @@
-package studentmanagementsystem;
+package application_frames;
 
+import application_frames.choice_frame;
+import data_methods.StudentServicesImpl;
+import data_methods.StudentService;
+import data_methods.Student;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,7 +22,7 @@ public class removeStud_frame extends javax.swing.JFrame {
         pan_remove.setVisible(false);
     }
 
-    private studentServices ss = new studentServices();
+    private StudentService ss = new StudentServicesImpl();
     private String stud_id;
     private Student student;
 
@@ -139,9 +143,9 @@ public class removeStud_frame extends javax.swing.JFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lbl_mobNo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(pan_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_div, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pan_contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbl_div, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
