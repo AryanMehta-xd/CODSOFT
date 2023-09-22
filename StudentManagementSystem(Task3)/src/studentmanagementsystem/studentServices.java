@@ -17,30 +17,34 @@ public class studentServices {
         return add_stud(student);
     }
 
-    public Student find_student(long stud_id) {
+    public Student find_student(String stud_id) {
         return find_stud(stud_id);
     }
 
     public int update_student(Student student) {
         return update_stud(student);
     }
-    
-    public ArrayList<Student> display_all_students(){
+
+    public ArrayList<Student> display_all_students() {
         return display_stud();
     }
-    
-    private Student find_stud(long stud_id) {
+
+    public int remove_stud(String stud_id) {
+        return remove_st(stud_id);
+    }
+
+    private Student find_stud(String stud_id) {
         Student student;
 
         try {
             ps = db.db_con.prepareStatement("SELECT * FROM studentdata WHERE stud_id = ?");
-            ps.setLong(1, stud_id);
+            ps.setString(1, stud_id);
 
             rs = ps.executeQuery();
 
             if (rs.next()) {
                 student = new Student(rs.getString("stud_name"),
-                        rs.getLong("stud_id"),
+                        rs.getString("stud_id"),
                         rs.getString("stud_email"),
                         rs.getString("stud_mob_no"),
                         rs.getString("stud_div"));
@@ -48,7 +52,7 @@ public class studentServices {
                 return student;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            return null;
         }
         return null;
     }
@@ -57,12 +61,12 @@ public class studentServices {
         int status;
         try {
             ps = db.db_con.prepareStatement("UPDATE studentdata SET stud_id=?,stud_name=?,stud_email=?,stud_mob_no=?,stud_div=? WHERE stud_id = ?");
-            ps.setLong(1, student.getStud_id());
+            ps.setString(1, student.getStud_id());
             ps.setString(2, student.getStud_name());
             ps.setString(3, student.getStud_email());
             ps.setString(4, student.getStud_mob_no());
             ps.setString(5, student.getStud_div());
-            ps.setLong(6, student.getStud_id());
+            ps.setString(6, student.getStud_id());
 
             return status = ps.executeUpdate();
         } catch (Exception ex) {
@@ -75,7 +79,7 @@ public class studentServices {
         int status = 0;
         try {
             ps = db.db_con.prepareStatement("INSERT INTO studentData VALUES(?,?,?,?,?)");
-            ps.setLong(1, student.getStud_id());
+            ps.setString(1, student.getStud_id());
             ps.setString(2, student.getStud_name());
             ps.setString(3, student.getStud_email());
             ps.setString(4, student.getStud_mob_no());
@@ -83,37 +87,48 @@ public class studentServices {
 
             return status = ps.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            return 0;
         }
-        return 0;
     }
-    
-    private ArrayList<Student> display_stud(){
+
+    private ArrayList<Student> display_stud() {
         ArrayList<Student> stud_list = new ArrayList<>();
-        
+
         try {
             ps = db.db_con.prepareStatement("SELECT * FROM studentdata");
             rs = ps.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 Student student = new Student(rs.getString("stud_name"),
-                        rs.getLong("stud_id"),
+                        rs.getString("stud_id"),
                         rs.getString("stud_email"),
                         rs.getString("stud_mob_no"),
                         rs.getString("stud_div"));
-                
+
                 stud_list.add(student);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if(stud_list.isEmpty()){
+        if (stud_list.isEmpty()) {
             return null;
-        }else{
+        } else {
             return stud_list;
         }
     }
-    
-    public void closeCon(){
+
+    private int remove_st(String stud_id) {
+        int status = 0;
+        try {
+            ps = db.db_con.prepareStatement("DELETE FROM studentdata WHERE stud_id = ?");
+            ps.setString(1, stud_id);
+
+            return status = ps.executeUpdate();
+        } catch (Exception e) {
+            return 0;
+        }
+    }
+
+    public void closeCon() {
         try {
             db.db_con.close();
         } catch (Exception ex) {

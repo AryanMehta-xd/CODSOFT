@@ -6,7 +6,7 @@ package studentmanagementsystem;
  */
 public class Student {
     private String stud_name;
-    private long stud_id;
+    private String stud_id;
     private String stud_email;
     private String stud_mob_no;
     private String stud_div;
@@ -19,11 +19,11 @@ public class Student {
         this.stud_name = stud_name;
     }
 
-    public long getStud_id() {
+    public String getStud_id() {
         return stud_id;
     }
 
-    public void setStud_id(long stud_id) {
+    public void setStud_id(String stud_id) {
         this.stud_id = stud_id;
     }
 
@@ -51,7 +51,7 @@ public class Student {
         this.stud_div = stud_div;
     }
 
-    public Student(String stud_name, long stud_id, String stud_email, String stud_mob_no, String stud_div) {
+    public Student(String stud_name, String stud_id, String stud_email, String stud_mob_no, String stud_div) {
         this.stud_name = stud_name;
         this.stud_id = stud_id;
         this.stud_email = stud_email;
