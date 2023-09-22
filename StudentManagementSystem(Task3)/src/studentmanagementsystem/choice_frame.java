@@ -101,6 +101,11 @@ public class choice_frame extends javax.swing.JFrame {
         bt_updateStud.setForeground(new java.awt.Color(102, 255, 102));
         bt_updateStud.setText("Update Student");
         bt_updateStud.setFocusPainted(false);
+        bt_updateStud.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_updateStudActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -175,6 +180,11 @@ public class choice_frame extends javax.swing.JFrame {
         dispose();
         new searchStud_frame().setVisible(true);
     }//GEN-LAST:event_bt_seachStudentActionPerformed
+
+    private void bt_updateStudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_updateStudActionPerformed
+        dispose();
+        new updateStud_frame().setVisible(true);
+    }//GEN-LAST:event_bt_updateStudActionPerformed
 
     /**
      * @param args the command line arguments

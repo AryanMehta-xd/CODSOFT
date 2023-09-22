@@ -43,6 +43,7 @@ public class addStud_frame extends javax.swing.JFrame {
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setBackground(new java.awt.Color(51, 51, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -85,6 +86,7 @@ public class addStud_frame extends javax.swing.JFrame {
         bt_addStud.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         bt_addStud.setForeground(new java.awt.Color(102, 255, 102));
         bt_addStud.setText("Add Student");
+        bt_addStud.setFocusPainted(false);
         bt_addStud.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_addStudActionPerformed(evt);
@@ -95,6 +97,7 @@ public class addStud_frame extends javax.swing.JFrame {
         bt_back.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         bt_back.setForeground(new java.awt.Color(102, 255, 102));
         bt_back.setText("Back");
+        bt_back.setFocusPainted(false);
         bt_back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_backActionPerformed(evt);
@@ -124,7 +127,7 @@ public class addStud_frame extends javax.swing.JFrame {
                                 .addComponent(tf_studName)
                                 .addComponent(tf_studEmail)
                                 .addComponent(tf_studMob, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)))
-                        .addGap(0, 23, Short.MAX_VALUE))
+                        .addGap(0, 21, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(bt_back)

@@ -89,6 +89,7 @@ public class updateStud_frame extends javax.swing.JFrame {
         bt_getStud.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         bt_getStud.setForeground(new java.awt.Color(102, 255, 102));
         bt_getStud.setText("Get Student");
+        bt_getStud.setFocusPainted(false);
         bt_getStud.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_getStudActionPerformed(evt);
@@ -162,7 +163,7 @@ public class updateStud_frame extends javax.swing.JFrame {
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pan_conLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tf_name)
+                    .addComponent(tf_name, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
                     .addComponent(tf_email)
                     .addComponent(tf_mobno)
                     .addComponent(tf_div))
@@ -196,6 +197,12 @@ public class updateStud_frame extends javax.swing.JFrame {
         bt_update.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         bt_update.setForeground(new java.awt.Color(102, 255, 102));
         bt_update.setText("Update Student");
+        bt_update.setFocusPainted(false);
+        bt_update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_updateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pan_btLayout = new javax.swing.GroupLayout(pan_bt);
         pan_bt.setLayout(pan_btLayout);
@@ -235,11 +242,11 @@ public class updateStud_frame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(27, 27, 27)
                         .addComponent(tf_studId, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(33, 33, 33)
                         .addComponent(bt_getStud)
-                        .addContainerGap(85, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(bt_back)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -250,11 +257,10 @@ public class updateStud_frame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tf_studId, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(bt_getStud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_studId, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bt_getStud, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(pan_con, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -309,37 +315,50 @@ public class updateStud_frame extends javax.swing.JFrame {
     private void tf_nameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_nameMouseClicked
         if(evt.getButton()==MouseEvent.BUTTON3){
             tf_name.setEditable(true);
-            tf_name.getCaret().setVisible(true);
+            tf_name.requestFocus();
         }
     }//GEN-LAST:event_tf_nameMouseClicked
 
     private void tf_emailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_emailMouseClicked
         if(evt.getButton()==MouseEvent.BUTTON3){
             tf_email.setEditable(true);
-            tf_email.getCaret().setVisible(true);
+            tf_email.requestFocus();
         }
     }//GEN-LAST:event_tf_emailMouseClicked
 
     private void tf_mobnoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_mobnoMouseClicked
         if(evt.getButton()==MouseEvent.BUTTON3){
             tf_mobno.setEditable(true);
-            tf_mobno.getCaret().setVisible(true);
+            tf_mobno.requestFocus();
         }
     }//GEN-LAST:event_tf_mobnoMouseClicked
 
     private void tf_divMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_divMouseClicked
         if(evt.getButton()==MouseEvent.BUTTON3){
             tf_div.setEditable(true);
-            tf_div.getCaret().setVisible(true);
+            tf_div.requestFocus();
         }
     }//GEN-LAST:event_tf_divMouseClicked
 
     private void tf_studIdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tf_studIdMouseClicked
         if(evt.getButton()==MouseEvent.BUTTON3){
             tf_studId.setEditable(true);
-            tf_studId.getCaret().setVisible(true);
+            tf_studId.requestFocus();
         }
     }//GEN-LAST:event_tf_studIdMouseClicked
+
+    private void bt_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_updateActionPerformed
+        Student student = new Student(tf_name.getText(), tf_studId.getText(), tf_email.getText(), tf_mobno.getText(), tf_div.getText());
+        
+        int status = ss.update_student(student);
+        if(status==0){
+            JOptionPane.showMessageDialog(null, "Something went wrong!!");
+        }else{
+            JOptionPane.showMessageDialog(null, "Student Data Updated");
+            dispose();
+            new choice_frame().setVisible(true);
+        }
+    }//GEN-LAST:event_bt_updateActionPerformed
 
     /**
      * @param args the command line arguments
