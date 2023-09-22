@@ -68,6 +68,11 @@ public class choice_frame extends javax.swing.JFrame {
         bt_seachStudent.setForeground(new java.awt.Color(102, 255, 102));
         bt_seachStudent.setText("Search Student");
         bt_seachStudent.setFocusPainted(false);
+        bt_seachStudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_seachStudentActionPerformed(evt);
+            }
+        });
 
         bt_disStud.setBackground(new java.awt.Color(51, 51, 255));
         bt_disStud.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -165,6 +170,11 @@ public class choice_frame extends javax.swing.JFrame {
         dispose();
         new displayAll_frame().setVisible(true);
     }//GEN-LAST:event_bt_disStudActionPerformed
+
+    private void bt_seachStudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_seachStudentActionPerformed
+        dispose();
+        new searchStud_frame().setVisible(true);
+    }//GEN-LAST:event_bt_seachStudentActionPerformed
 
     /**
      * @param args the command line arguments

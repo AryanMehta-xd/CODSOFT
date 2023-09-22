@@ -1,59 +1,19 @@
 package studentmanagementsystem;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
 
 /**
  *
  * @author Aryan Mehta
  */
-public class displayAll_frame extends javax.swing.JFrame {
+public class searchStud_frame extends javax.swing.JFrame {
 
-    private ArrayList<Student> stud_list;
-    private studentServices ss = new studentServices();
-
-    public displayAll_frame() {
+    public searchStud_frame() {
         initComponents();
-        init();
     }
 
-    private void init() {
-        stud_list = ss.display_all_students();
-
-        if (stud_list == null) {
-            JOptionPane.showMessageDialog(null, "No Student data to be shown!!");
-            dispose();
-            new choice_frame().setVisible(true);
-        } else {
-            JTableHeader tableHeader = table_data.getTableHeader();
-            
-            DefaultTableCellRenderer tb_head = new DefaultTableCellRenderer();
-            tb_head.setBackground(new Color(51,51,255));
-            tb_head.setForeground(new Color(102,255,102));
-            tb_head.setFont(new Font("Seogoe UI",Font.BOLD,16));
-            
-            tableHeader.getColumnModel().getColumn(0).setHeaderRenderer(tb_head);
-            tableHeader.getColumnModel().getColumn(1).setHeaderRenderer(tb_head);
-            tableHeader.getColumnModel().getColumn(2).setHeaderRenderer(tb_head);
-            tableHeader.getColumnModel().getColumn(3).setHeaderRenderer(tb_head);
-            tableHeader.getColumnModel().getColumn(4).setHeaderRenderer(tb_head);
-            
-            DefaultTableModel mod = (DefaultTableModel) table_data.getModel();
-            mod.setRowCount(0);
-            for (Student student : stud_list) {
-                String[] data = {student.getStud_id(),student.getStud_name(),student.getStud_email(),student.getStud_mob_no()
-                ,student.getStud_div()};
-                
-                mod.addRow(data);
-            }
-        }
-    }
-
+    studentServices ss = new studentServices();
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -65,8 +25,9 @@ public class displayAll_frame extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        table_data = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        tf_studId = new javax.swing.JTextField();
+        bt_search = new javax.swing.JButton();
         bt_back = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -80,39 +41,32 @@ public class displayAll_frame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 255, 102));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("All Student Data");
+        jLabel1.setText("Search Student");
         jLabel1.setOpaque(true);
 
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setText("Enter Student Id:");
 
-        table_data.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        table_data.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Id", "Name", "Email Id", "Mobile Number", "Division"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
+        tf_studId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tf_studId.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tf_studId.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        bt_search.setBackground(new java.awt.Color(51, 51, 255));
+        bt_search.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        bt_search.setForeground(new java.awt.Color(102, 255, 102));
+        bt_search.setText("<html>Search<br>Student</html>");
+        bt_search.setFocusPainted(false);
+        bt_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_searchActionPerformed(evt);
             }
         });
-        table_data.setGridColor(new java.awt.Color(255, 255, 255));
-        table_data.setRowHeight(30);
-        jScrollPane1.setViewportView(table_data);
 
         bt_back.setBackground(new java.awt.Color(51, 51, 255));
         bt_back.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         bt_back.setForeground(new java.awt.Color(102, 255, 102));
         bt_back.setText("Back");
+        bt_back.setFocusPainted(false);
         bt_back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_backActionPerformed(evt);
@@ -127,21 +81,30 @@ public class displayAll_frame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(tf_studId, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(bt_back)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bt_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(bt_back)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_studId, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(bt_search, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bt_back))
+                .addGap(15, 15, 15))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -164,6 +127,25 @@ public class displayAll_frame extends javax.swing.JFrame {
         new choice_frame().setVisible(true);
     }//GEN-LAST:event_bt_backActionPerformed
 
+    private void bt_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_searchActionPerformed
+        String stud_id = tf_studId.getText();
+        if(stud_id.equals("")){
+            JOptionPane.showMessageDialog(null, "Please Enter a Student Id!!");
+        }else{
+            Student student = ss.find_student(stud_id);
+            
+            if(student==null){
+                JOptionPane.showMessageDialog(null, "No Student Found for Id:"+stud_id);
+            }else{
+                JOptionPane.showMessageDialog(null, "\tStudent Found!!!\nStudent Name :"+student.getStud_name()
+                +"\nStudent Id:"+stud_id+"\nStudent Email-Id: "+student.getStud_email()+"\nStudent Mobile Number: "+student.getStud_mob_no()
+                +"\nStudent Division: "+student.getStud_div());
+                
+                tf_studId.setText("");
+            }
+        }
+    }//GEN-LAST:event_bt_searchActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -181,29 +163,30 @@ public class displayAll_frame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(displayAll_frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(searchStud_frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(displayAll_frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(searchStud_frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(displayAll_frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(searchStud_frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(displayAll_frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(searchStud_frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new displayAll_frame().setVisible(true);
+                new searchStud_frame().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_back;
+    private javax.swing.JButton bt_search;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable table_data;
+    private javax.swing.JTextField tf_studId;
     // End of variables declaration//GEN-END:variables
 }
