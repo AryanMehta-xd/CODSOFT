@@ -155,6 +155,11 @@ public class updateCon_frame extends javax.swing.JFrame {
         bt_update.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         bt_update.setForeground(new java.awt.Color(255, 255, 255));
         bt_update.setText("Update Contact");
+        bt_update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_updateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -182,10 +187,11 @@ public class updateCon_frame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bt_getCon, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tf_number))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tf_number)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(bt_getCon, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(pan_dets, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -235,6 +241,20 @@ public class updateCon_frame extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_bt_getConActionPerformed
+
+    private void bt_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_updateActionPerformed
+        Contact contact = new Contact(tf_number.getText(),tf_name.getText()
+                ,tf_email.getText(),tf_add.getText());
+        
+        int status = ss.updateContact(contact);
+        if(status==1){
+            JOptionPane.showMessageDialog(null, "Contact Updated Successfully!!");
+            init();
+            tf_number.setText("");
+        }else{
+            JOptionPane.showMessageDialog(null, "Something went Wrong!!");
+        }
+    }//GEN-LAST:event_bt_updateActionPerformed
 
     /**
      * @param args the command line arguments

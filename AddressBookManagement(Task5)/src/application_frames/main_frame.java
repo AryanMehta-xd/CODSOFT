@@ -80,6 +80,11 @@ public class main_frame extends javax.swing.JFrame {
         bt_disAllCon.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         bt_disAllCon.setForeground(new java.awt.Color(255, 255, 255));
         bt_disAllCon.setText("Display All Contacts");
+        bt_disAllCon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_disAllConActionPerformed(evt);
+            }
+        });
 
         bt_exit.setBackground(new java.awt.Color(0, 0, 0));
         bt_exit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -160,6 +165,11 @@ public class main_frame extends javax.swing.JFrame {
         dispose();
         new updateCon_frame().setVisible(true);
     }//GEN-LAST:event_bt_updateConActionPerformed
+
+    private void bt_disAllConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_disAllConActionPerformed
+        new disAllCon_frame().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_bt_disAllConActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
