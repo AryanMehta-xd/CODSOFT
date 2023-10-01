@@ -3,36 +3,18 @@ package application_frames;
 import dataMethods.AddressBookSystem;
 import dataMethods.AddressBookSystemImpl;
 import entities.Contact;
-import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Aryan Mehta
  */
-public class disAllCon_frame extends javax.swing.JFrame {
+public class searchCon_frame extends javax.swing.JFrame {
 
-    public disAllCon_frame() {
+    public searchCon_frame() {
         initComponents();
-        init();
     }
 
-    private void init(){
-        ArrayList<Contact> conList = new ArrayList<>();
-        conList = ss.displayAllContacts();
-        
-        DefaultTableModel mod = (DefaultTableModel)tableList.getModel();
-        mod.setRowCount(0);
-        if(conList==null){
-            
-        }else{
-            for(Contact contact : conList){
-                String[] data = {contact.getCon_number(),contact.getCon_name(),contact.getCon_email(),contact.getCon_address()};
-                mod.addRow(data);
-            }
-        }
-    }
-    
     private AddressBookSystem ss = new AddressBookSystemImpl();
     
     /**
@@ -46,54 +28,47 @@ public class disAllCon_frame extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tableList = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        tf_conNum = new javax.swing.JTextField();
         bt_back = new javax.swing.JButton();
+        bt_search = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Display All Contacts");
+        jLabel1.setText("Find Contact");
         jLabel1.setOpaque(true);
 
-        tableList.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tableList.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Number", "Name", "Email-Id", "Address"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                true, true, true, false
-            };
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setText("Contact Number:");
 
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        tableList.setGridColor(new java.awt.Color(255, 255, 255));
-        tableList.setRowHeight(30);
-        jScrollPane1.setViewportView(tableList);
+        tf_conNum.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         bt_back.setBackground(new java.awt.Color(0, 0, 0));
         bt_back.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         bt_back.setForeground(new java.awt.Color(255, 255, 255));
         bt_back.setText("Back");
+        bt_back.setFocusPainted(false);
         bt_back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_backActionPerformed(evt);
+            }
+        });
+
+        bt_search.setBackground(new java.awt.Color(0, 0, 0));
+        bt_search.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        bt_search.setForeground(new java.awt.Color(255, 255, 255));
+        bt_search.setText("Find");
+        bt_search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_searchActionPerformed(evt);
             }
         });
 
@@ -105,21 +80,29 @@ public class disAllCon_frame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 846, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tf_conNum, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(bt_back)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bt_search)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addComponent(bt_back)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tf_conNum, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(bt_search, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bt_back, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -142,6 +125,23 @@ public class disAllCon_frame extends javax.swing.JFrame {
         new main_frame().setVisible(true);
     }//GEN-LAST:event_bt_backActionPerformed
 
+    private void bt_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_searchActionPerformed
+        String con_number = tf_conNum.getText();
+        if(con_number.equals("")){
+            JOptionPane.showMessageDialog(null, "Please Enter the Contact Number!!");
+        }else{
+            Contact contact = ss.findContact(con_number);
+            if(contact==null){
+                JOptionPane.showMessageDialog(null, "No Contact with Given Number Found!!!");
+            }else{
+                JOptionPane.showMessageDialog(null, "\tContact Found!!\n<html><b>Contact Name:</b>"+contact
+                        .getCon_name()+"<br><b>Contact Email-Id:</b>"+contact.getCon_email()+"<br><b>Contact Address:</b>"+
+                        contact.getCon_address()+"</html>");
+                tf_conNum.setText("");
+            }
+        }
+    }//GEN-LAST:event_bt_searchActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -159,29 +159,30 @@ public class disAllCon_frame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(disAllCon_frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(searchCon_frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(disAllCon_frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(searchCon_frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(disAllCon_frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(searchCon_frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(disAllCon_frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(searchCon_frame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new disAllCon_frame().setVisible(true);
+                new searchCon_frame().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bt_back;
+    private javax.swing.JButton bt_search;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tableList;
+    private javax.swing.JTextField tf_conNum;
     // End of variables declaration//GEN-END:variables
 }

@@ -71,7 +71,7 @@ public class AddressBookSystemImpl implements AddressBookSystem{
     
     private int removeCon(String con_number){
         try {
-            ps = dbConn.connection.prepareStatement("DELETE * FROM contactinfo WHERE con_number = ?");
+            ps = dbConn.connection.prepareStatement("DELETE FROM contactinfo WHERE con_number = ?");
             ps.setString(1, con_number);
             
             return ps.executeUpdate();

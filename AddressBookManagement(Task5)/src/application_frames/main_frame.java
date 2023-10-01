@@ -69,12 +69,22 @@ public class main_frame extends javax.swing.JFrame {
         bt_remCon.setForeground(new java.awt.Color(255, 255, 255));
         bt_remCon.setText("Remove Contact");
         bt_remCon.setFocusPainted(false);
+        bt_remCon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_remConActionPerformed(evt);
+            }
+        });
 
         bt_srcCon.setBackground(new java.awt.Color(0, 0, 0));
         bt_srcCon.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         bt_srcCon.setForeground(new java.awt.Color(255, 255, 255));
-        bt_srcCon.setText("Search Contact");
+        bt_srcCon.setText("Find Contact");
         bt_srcCon.setFocusPainted(false);
+        bt_srcCon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_srcConActionPerformed(evt);
+            }
+        });
 
         bt_disAllCon.setBackground(new java.awt.Color(0, 0, 0));
         bt_disAllCon.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -170,6 +180,16 @@ public class main_frame extends javax.swing.JFrame {
         new disAllCon_frame().setVisible(true);
         dispose();
     }//GEN-LAST:event_bt_disAllConActionPerformed
+
+    private void bt_srcConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_srcConActionPerformed
+        new searchCon_frame().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_bt_srcConActionPerformed
+
+    private void bt_remConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_remConActionPerformed
+        dispose();
+        new removeCon_frame().setVisible(true);
+    }//GEN-LAST:event_bt_remConActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
