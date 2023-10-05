@@ -6,10 +6,10 @@ import java.sql.*;
  *
  * @author Aryan Mehta
  */
-public class db_conn {
+public class dbConn {
     public Connection con;
     
-    public db_conn(){
+    public dbConn(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/atmDB","root","1234");
