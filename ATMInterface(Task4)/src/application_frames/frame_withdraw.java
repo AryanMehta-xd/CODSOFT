@@ -8,9 +8,9 @@ import javax.swing.JOptionPane;
  *
  * @author Aryan Mehta
  */
-public class frame_addBalance extends javax.swing.JFrame {
+public class frame_withdraw extends javax.swing.JFrame {
 
-    public frame_addBalance() {
+    public frame_withdraw() {
         initComponents();
     }
 
@@ -30,7 +30,7 @@ public class frame_addBalance extends javax.swing.JFrame {
         tf_amount = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         tf_pin = new javax.swing.JTextField();
-        bt_deposit = new javax.swing.JButton();
+        bt_withdraw = new javax.swing.JButton();
         bt_exit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,14 +50,14 @@ public class frame_addBalance extends javax.swing.JFrame {
 
         tf_pin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        bt_deposit.setBackground(new java.awt.Color(0, 0, 0));
-        bt_deposit.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        bt_deposit.setForeground(new java.awt.Color(255, 255, 255));
-        bt_deposit.setText("Deposit");
-        bt_deposit.setFocusPainted(false);
-        bt_deposit.addActionListener(new java.awt.event.ActionListener() {
+        bt_withdraw.setBackground(new java.awt.Color(0, 0, 0));
+        bt_withdraw.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        bt_withdraw.setForeground(new java.awt.Color(255, 255, 255));
+        bt_withdraw.setText("Withdraw");
+        bt_withdraw.setFocusPainted(false);
+        bt_withdraw.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_depositActionPerformed(evt);
+                bt_withdrawActionPerformed(evt);
             }
         });
 
@@ -78,7 +78,7 @@ public class frame_addBalance extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -86,13 +86,12 @@ public class frame_addBalance extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(tf_amount)
-                            .addComponent(tf_pin, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(tf_pin, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(bt_exit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bt_deposit)))
-                .addContainerGap())
+                        .addComponent(bt_withdraw)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,7 +106,7 @@ public class frame_addBalance extends javax.swing.JFrame {
                     .addComponent(tf_pin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bt_deposit)
+                    .addComponent(bt_withdraw)
                     .addComponent(bt_exit))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -127,19 +126,19 @@ public class frame_addBalance extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bt_depositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_depositActionPerformed
+    private void bt_withdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_withdrawActionPerformed
         int amount = Integer.parseInt(tf_amount.getText());
-        
+
         if(amount!=0){
             String pin = tf_pin.getText();
             if(pin.equals("1234")){
-                int status=dao.depositAmount(amount);
-                if(status==1){
-                    JOptionPane.showMessageDialog(null, amount+" Deposited!!");
+                int status=dao.withdrawAmount(amount);
+                if(status==0){
+                    JOptionPane.showMessageDialog(null, "Insufficient Balance!!");
+                }else{
+                    JOptionPane.showMessageDialog(null, amount+" withdrawed!!");
                     dispose();
                     new main_frame().setVisible(true);
-                }else{
-                    JOptionPane.showMessageDialog(null, "Something went Wrong!!");
                 }
             }else{
                 JOptionPane.showMessageDialog(null, "Invalid Pin!");
@@ -147,7 +146,7 @@ public class frame_addBalance extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null, "Please Enter Valid Amount!!");
         }
-    }//GEN-LAST:event_bt_depositActionPerformed
+    }//GEN-LAST:event_bt_withdrawActionPerformed
 
     private void bt_exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bt_exitActionPerformed
         dispose();
@@ -171,27 +170,27 @@ public class frame_addBalance extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frame_addBalance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frame_withdraw.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frame_addBalance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frame_withdraw.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frame_addBalance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frame_withdraw.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frame_addBalance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frame_withdraw.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frame_addBalance().setVisible(true);
+                new frame_withdraw().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bt_deposit;
     private javax.swing.JButton bt_exit;
+    private javax.swing.JButton bt_withdraw;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

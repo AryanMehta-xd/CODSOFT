@@ -51,7 +51,9 @@ public class atmDAOimpl implements atmDAO{
             
             rs = ps.executeQuery();
             
-            return rs.getInt("acc_balance");
+            while(rs.next()){
+                return rs.getInt("acc_balance");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
