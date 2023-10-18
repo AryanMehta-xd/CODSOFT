@@ -7,6 +7,7 @@ import java.util.ArrayList;
  *
  * @author Aryan Mehta
  */
+//DAO methods for students
 public interface StudentService {
     
     public int add_student(Student student);

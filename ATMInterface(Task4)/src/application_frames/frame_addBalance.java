@@ -132,6 +132,7 @@ public class frame_addBalance extends javax.swing.JFrame {
         
         if(amount!=0){
             String pin = tf_pin.getText();
+            //user data is hardcoded in the system only balance is updated in the DB
             if(pin.equals("1234")){
                 int status=dao.depositAmount(amount);
                 if(status==1){

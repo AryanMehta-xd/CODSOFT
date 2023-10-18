@@ -1,7 +1,5 @@
 package application_frames;
 
-import application_frames.addStud_frame;
-
 /**
  *
  * @author Aryan Mehta

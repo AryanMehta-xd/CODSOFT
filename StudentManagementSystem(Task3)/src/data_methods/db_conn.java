@@ -7,6 +7,7 @@ import java.sql.DriverManager;
  *
  * @author Aryan Mehta
  */
+//database connection class
 public class db_conn {
     public Connection db_con;
     

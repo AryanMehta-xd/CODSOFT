@@ -4,6 +4,7 @@ package data_methods;
  *
  * @author Aryan Mehta
  */
+//entity
 public class Student {
     private String stud_name;
     private String stud_id;

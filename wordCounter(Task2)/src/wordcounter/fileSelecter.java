@@ -68,7 +68,7 @@ public class fileSelecter extends javax.swing.JFrame {
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         ta_textIN.setColumns(20);
-        ta_textIN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ta_textIN.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         ta_textIN.setRows(5);
         ta_textIN.setToolTipText("Enter Text");
         jScrollPane1.setViewportView(ta_textIN);
@@ -110,9 +110,9 @@ public class fileSelecter extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(main_panLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, main_panLayout.createSequentialGroup()
-                        .addComponent(lbl_ta_info, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbl_ta_info, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, main_panLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -221,6 +221,8 @@ public class fileSelecter extends javax.swing.JFrame {
             }
 
             JOptionPane.showMessageDialog(null, "Word Count :" + wordList.size());
+            ta_textIN.setText("");
+            lbl_fileName.setText("");
         }
     }//GEN-LAST:event_but_prosTextActionPerformed
 
